@@ -1,0 +1,33 @@
+.trafficCard {
+  display: flex; flex-wrap: wrap; align-items: center;
+  margin-top: 16px; padding: 8px 16px;
+  background-color: $white; border-radius: 5px;
+  cursor: pointer; transition: transform 0.2s ease-in-out;
+  &:hover {
+    transform: translateY(-5px);
+  }
+}
+.trafficCard__header {display: flex; flex-basis: 40%;}
+.trafficCard__content {
+  display: flex; flex-basis: 55%; flex-wrap: wrap;
+  margin-left: 4%;
+}
+.trafficCard__icon {
+  margin-right: 8px;
+  width: 32px; height: 32px;
+}
+.trafficCard__title, .trafficCard__message {
+  display: flex; flex-basis: 100%;
+  justify-content: center; text-align: center;
+}
+
+@media screen and (max-width: 600px) {
+  .trafficCard__header {
+    flex-basis: 100%;
+    justify-content: center;
+  }
+  .trafficCard__content {
+    flex-basis: 100%;
+    margin: 8px 0 0 0;
+  }
+}

@@ -1,10 +1,13 @@
+/** INIT / CONFIG */
+@import "config/reset";
+@import "config/variables";
+
 /** ANTD CSS */
 @import "~antd/dist/antd.min.css";
 
-/** INIT / CONFIG */
-@import "config/variables";
-
 /** WRITE ON NODE MODULES CSS */
 @import "libs/antd-layout";
+@import "libs/antd-select";
 
 /** MY SCSS */
+@import "components/traffic-cards";

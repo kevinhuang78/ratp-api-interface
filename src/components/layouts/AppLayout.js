@@ -2,8 +2,9 @@ import React, { Component } from "react";
 import Layout from "antd/lib/layout";
 import Menu from "antd/lib/menu";
 import Icon from "antd/lib/icon";
-import Logo from "../../static/logo.png";
-import {Link} from "react-router-dom";
+import BackTop from "antd/lib/back-top";
+import Logo from "../../static/logo-ratp.png";
+import { Link } from "react-router-dom";
 
 class AppLayout extends Component {
     constructor(props) {
@@ -23,6 +24,7 @@ class AppLayout extends Component {
     render() {
         return (
             <Layout style={{ minHeight: '100vh' }}>
+                <BackTop />
                 <Layout.Sider
                     collapsible
                     breakpoint="lg"

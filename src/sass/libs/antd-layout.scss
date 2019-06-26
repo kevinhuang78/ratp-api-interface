@@ -1,3 +1,4 @@
+.ant-layout {background-color: $grey}
 .ant-layout-sider-children .logo {
   margin: 16px;
   width: calc(100% - 32px); height: auto;
@@ -22,7 +23,7 @@
 }
 .ant-layout-content--collapsed {margin: 24px 16px 0 216px}
 .ant-layout-footer {
-  margin-left: 96px;
+  margin: 20px 0 0 80px;
   text-align: center;
 }
-.ant-layout-footer--collapsed {margin-left: 216px}
+.ant-layout-footer--collapsed {margin-left: 200px}
