@@ -1,9 +1,10 @@
 import React from "react";
+import AppLayout from "../../components/layouts/AppLayout";
 
 const NotFoundExceptionScreen = () => (
-    <div>
-        404 - Not found
-    </div>
+    <AppLayout>
+        <h1>404 - Not found</h1>
+    </AppLayout>
 );
 
 export default NotFoundExceptionScreen;

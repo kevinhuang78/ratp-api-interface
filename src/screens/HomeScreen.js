@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import { connect } from 'react-redux';
 import { withRouter } from "react-router";
 import { getTraffic } from "../actions/traffics";
+import AppLayout from "../components/layouts/AppLayout";
 
 class HomeScreen extends Component {
     constructor(props) {
@@ -10,6 +11,8 @@ class HomeScreen extends Component {
         this.state = {
             loading: true
         };
+
+        document.title = "RATP API Interface - Page d'accueil";
     }
 
     componentDidMount() {
@@ -21,7 +24,9 @@ class HomeScreen extends Component {
 
     render() {
         return (
-            <div>
+            <AppLayout
+                defaultSelectedKeys={['home']}
+            >
                 {
                     this.state.loading
                         ? <p>Loading screen....</p>
@@ -64,7 +69,7 @@ class HomeScreen extends Component {
                             </div>
                           </div>
                 }
-            </div>
+            </AppLayout>
         );
     }
 }
