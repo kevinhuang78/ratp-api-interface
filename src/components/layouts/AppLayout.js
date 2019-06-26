@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Layout from "antd/lib/layout";
 import Menu from "antd/lib/menu";
 import Icon from "antd/lib/icon";
@@ -87,5 +88,10 @@ class AppLayout extends Component {
         );
     }
 }
+
+AppLayout.propTypes = {
+    /** Default selected keys for menu on the left */
+    defaultSelectedKeys: PropTypes.arrayOf(PropTypes.string)
+};
 
 export default AppLayout;
