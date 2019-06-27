@@ -1,4 +1,4 @@
-.ant-layout {background-color: $grey}
+.ant-layout {background-color: $grey; min-height: 100vh;}
 .ant-layout-sider-children .logo {
   margin: 16px;
   width: calc(100% - 32px); height: auto;
@@ -18,12 +18,12 @@
 .ant-layout-sider-trigger,
 .ant-menu.ant-menu-dark .ant-menu-item-selected {background-color: $primary-color-dark}
 .ant-layout-content {
-  margin: 24px 16px 0 96px;
+  margin: 24px 16px 24px 96px;
   overflow: initial;
 }
-.ant-layout-content--collapsed {margin: 24px 16px 0 216px}
+.ant-layout-content--collapsed {margin-left: 216px}
 .ant-layout-footer {
-  margin: 20px 0 0 80px;
+  margin-left: 80px;
   text-align: center;
 }
 .ant-layout-footer--collapsed {margin-left: 200px}

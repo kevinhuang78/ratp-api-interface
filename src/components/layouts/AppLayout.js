@@ -24,7 +24,7 @@ class AppLayout extends Component {
 
     render() {
         return (
-            <Layout style={{ minHeight: '100vh' }}>
+            <Layout>
                 <BackTop />
                 <Layout.Sider
                     collapsible

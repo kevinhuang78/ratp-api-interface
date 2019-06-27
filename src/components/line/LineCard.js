@@ -23,24 +23,24 @@ function renderIcon(type) {
     }
 }
 
-const TrafficCard = (props) => (
+const LineCard = (props) => (
     <div className="trafficCard">
         <div className="trafficCard__header">
-            <img className="trafficCard__icon" src={renderIcon(props.type)} alt={"Icône de " + props.type + " " + props.trafficItem.line} />
-            <h2 className="trafficCard__line">{props.trafficItem.line}</h2>
+            <img className="trafficCard__icon" src={renderIcon(props.type)} alt={"Icône de " + props.type + " " + props.lineItem.code} />
+            <h2 className="trafficCard__line">{props.lineItem.code}</h2>
         </div>
         <div className="trafficCard__content">
-            <p className="trafficCard__title">{props.trafficItem.title}</p>
-            <p className="trafficCard__message">{props.trafficItem.message}</p>
+            <p className="trafficCard__title">{props.lineItem.name}</p>
+            <p className="trafficCard__message">Directions : {props.lineItem.directions}</p>
         </div>
     </div>
 );
 
-TrafficCard.propTypes = {
+LineCard.propTypes = {
     /** The item which is containing traffic information */
-    trafficItem: PropTypes.object.isRequired,
+    lineItem: PropTypes.object.isRequired,
     /** The type of traffic */
-    type: PropTypes.oneOf(['Métro', 'Tramway', 'RER']).isRequired
+    type: PropTypes.oneOf(['Métro', 'Tramway', 'RER', 'Noctilien', 'Bus']).isRequired
 };
 
-export default TrafficCard;
+export default LineCard;
