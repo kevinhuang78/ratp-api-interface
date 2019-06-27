@@ -3,7 +3,7 @@ import * as types from "../actions/traffics";
 const initialState = {
     trafficLoading: false,
     trafficError: null,
-    traffic: {}
+    trafficList: {}
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 trafficLoading: false,
-                traffic: action.data
+                trafficList: action.data
             };
         case types.GET_TRAFFIC_FAILURE:
             return {

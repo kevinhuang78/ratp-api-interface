@@ -6,6 +6,7 @@ import AppLayout from "../components/layouts/AppLayout";
 import LoadingScreen from "../components/LoadingScreen";
 import Tabs from "antd/lib/tabs";
 import Icon from "antd/lib/icon";
+import notification from "antd/lib/notification";
 import LineTab from "../components/line/LineTab";
 
 class LinesScreen extends Component {
@@ -27,10 +28,18 @@ class LinesScreen extends Component {
 
     loadLines() {
         this.props.getLines()
-            .then(() => this.setState({loading: false}));
+            .then(() => this.setState({loading: false}))
+            .catch(() => notification.error({
+                message: this.props.lines.linesError.code,
+                description: this.props.lines.linesError.message,
+                icon: <Icon type="frown" />,
+                duration: 10
+            }));
     }
 
     render() {
+        const linesList = this.props.lines.linesList;
+
         return (
             <AppLayout
                 defaultSelectedKeys={['line']}
@@ -53,31 +62,31 @@ class LinesScreen extends Component {
                             >
                                 <Tabs.TabPane tab="Métros" key="metros">
                                     <LineTab
-                                        line={this.props.lines.line.metros}
+                                        line={linesList.metros}
                                         type="Métro"
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="RERs" key="rers">
                                     <LineTab
-                                        line={this.props.lines.line.rers}
+                                        line={linesList.rers}
                                         type="RER"
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Tramways" key="tramways">
                                     <LineTab
-                                        line={this.props.lines.line.tramways}
+                                        line={linesList.tramways}
                                         type="Tramway"
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Bus" key="buses">
                                     <LineTab
-                                        line={this.props.lines.line.buses}
+                                        line={linesList.buses}
                                         type="Bus"
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Noctiliens" key="noctiliens">
                                     <LineTab
-                                        line={this.props.lines.line.noctiliens}
+                                        line={linesList.noctiliens}
                                         type="Noctilien"
                                     />
                                 </Tabs.TabPane>

@@ -7,6 +7,7 @@ import LoadingScreen from "../components/LoadingScreen";
 import Tabs from "antd/lib/tabs";
 import Icon from "antd/lib/icon";
 import TrafficTab from "../components/traffic/TrafficTab";
+import notification from "antd/lib/notification";
 
 class TrafficScreen extends Component {
     constructor(props) {
@@ -27,10 +28,18 @@ class TrafficScreen extends Component {
 
     loadTraffic() {
         this.props.getTraffic()
-            .then(() => this.setState({loading: false}));
+            .then(() => this.setState({loading: false}))
+            .catch(() => notification.error({
+                message: this.props.traffics.trafficError.code,
+                description: this.props.traffics.trafficError.message,
+                icon: <Icon type="frown" />,
+                duration: 10
+            }));
     }
 
     render() {
+        const trafficList = this.props.traffics.trafficList;
+
         return (
             <AppLayout
                 defaultSelectedKeys={['traffic']}
@@ -53,19 +62,19 @@ class TrafficScreen extends Component {
                             >
                                 <Tabs.TabPane tab="Métros" key="metros">
                                     <TrafficTab
-                                        traffic={this.props.traffics.traffic.metros}
+                                        traffic={trafficList.metros}
                                         type="Métro"
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="RERs" key="rers">
                                     <TrafficTab
-                                        traffic={this.props.traffics.traffic.rers}
+                                        traffic={trafficList.rers}
                                         type="RER"
                                     />
                                 </Tabs.TabPane>
                                 <Tabs.TabPane tab="Tramways" key="tramways">
                                     <TrafficTab
-                                        traffic={this.props.traffics.traffic.tramways}
+                                        traffic={trafficList.tramways}
                                         type="Tramway"
                                     />
                                 </Tabs.TabPane>

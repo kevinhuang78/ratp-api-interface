@@ -10,7 +10,7 @@ export function getTraffic()
         const request = API.get('/traffic');
         request
             .then(response => dispatch({type: GET_TRAFFIC_SUCCESS, data: response.data.result}))
-            .catch(error => dispatch({type: GET_TRAFFIC_FAILURE, data: error}))
+            .catch(error => dispatch({type: GET_TRAFFIC_FAILURE, data: error.response.data.result}))
         ;
         return request;
     };

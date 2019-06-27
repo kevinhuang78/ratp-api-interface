@@ -3,7 +3,7 @@ import * as types from "../actions/lines";
 const initialState = {
     linesLoading: false,
     linesError: null,
-    line: {}
+    linesList: {}
 };
 
 export default (state = initialState, action) => {
@@ -18,7 +18,7 @@ export default (state = initialState, action) => {
             return {
                 ...state,
                 linesLoading: false,
-                line: action.data
+                linesList: action.data
             };
         case types.GET_LINES_FAILURE:
             return {
