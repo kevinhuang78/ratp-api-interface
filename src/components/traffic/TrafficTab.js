@@ -1,13 +1,16 @@
 import React, { Component, Fragment } from "react";
 import Select from "antd/lib/select";
 import TrafficCard from "./TrafficCard";
+import PropTypes from "prop-types";
+import Pagination from "antd/lib/pagination";
 
 class TrafficTab extends Component {
     constructor(props) {
         super(props);
 
         this.state = {
-            traffic: this.props.traffic
+            traffic: this.props.traffic,
+            page: 1
         };
 
         this.handleSearch = this.handleSearch.bind(this);
@@ -38,17 +41,30 @@ class TrafficTab extends Component {
                     }
                 </Select>
                 {
-                    this.state.traffic.map(t =>
-                        <TrafficCard
-                            key={this.props.type + "-" + t.line}
-                            type={this.props.type}
-                            trafficItem={t}
-                        />
-                    )
+                    this.state.traffic
+                        .slice((this.state.page - 1) * 10, this.state.page * 10)
+                        .map(t =>
+                            <TrafficCard
+                                key={this.props.type + "-" + t.line}
+                                type={this.props.type}
+                                trafficItem={t}
+                            />
+                        )
+                }
+                {
+                    this.state.traffic.length > 10 &&
+                        <Pagination onChange={page => this.setState({page})} total={this.state.traffic.length} />
                 }
             </Fragment>
         );
     }
 }
+
+TrafficTab.propTypes = {
+    /** The array of traffics */
+    traffic: PropTypes.array.isRequired,
+    /** The type of traffic */
+    type: PropTypes.oneOf(['Métro', 'Tramway', 'RER']).isRequired
+};
 
 export default TrafficTab;
