@@ -1,16 +1,16 @@
 import React from "react";
 import PropTypes from "prop-types";
-import LogoMetro from "../static/logo-metro.png";
-import LogoTramway from "../static/logo-tramway.png";
-import LogoRer from "../static/logo-rer.png";
+import LogoMetro from "../../static/logo-metro.png";
+import LogoTramway from "../../static/logo-tramway.png";
+import LogoRer from "../../static/logo-rer.png";
 
 function renderIcon(type) {
     switch (type) {
-        case "metro":
+        case "Métro":
             return LogoMetro;
-        case "tramway":
+        case "Tramway":
             return LogoTramway;
-        case "rer":
+        case "RER":
             return LogoRer;
         default:
             return null;
@@ -20,11 +20,8 @@ function renderIcon(type) {
 const TrafficCard = (props) => (
     <div className="trafficCard">
         <div className="trafficCard__header">
-            {
-                renderIcon(props.type) &&
-                    <img className="trafficCard__icon" src={renderIcon(props.type)} alt={"Icône de " + props.trafficItem.line} />
-            }
-            <h2 className="trafficCard__line">{renderIcon(props.type) === null && "Métro"} {props.trafficItem.line}</h2>
+            <img className="trafficCard__icon" src={renderIcon(props.type)} alt={"Icône de " + props.type + " " + props.trafficItem.line} />
+            <h2 className="trafficCard__line">{props.trafficItem.line}</h2>
         </div>
         <div className="trafficCard__content">
             <p className="trafficCard__title">{props.trafficItem.title}</p>
@@ -37,7 +34,7 @@ TrafficCard.propTypes = {
     /** The item which is containing traffic information */
     trafficItem: PropTypes.object.isRequired,
     /** The type of traffic */
-    type: PropTypes.oneOf(['metro', 'tramway', 'rer'])
+    type: PropTypes.oneOf(['Métro', 'Tramway', 'RER']).isRequired
 };
 
 export default TrafficCard;
