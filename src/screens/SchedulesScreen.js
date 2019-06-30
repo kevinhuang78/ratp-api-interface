@@ -9,7 +9,6 @@ import { getSchedules, getDestinations, getStations } from "../actions/schedules
 import Select from "antd/lib/select";
 import Spin from "antd/lib/spin";
 import Timeline from "antd/lib/timeline/Timeline";
-import Button from "antd/lib/button/button";
 
 class SchedulesScreen extends Component {
     constructor(props) {
@@ -38,7 +37,6 @@ class SchedulesScreen extends Component {
 
         document.title = "RATP API Interface - Horaires";
 
-        this.handleReset = this.handleReset.bind(this);
         this.loadStations = this.loadStations.bind(this);
         this.loadDestinations = this.loadDestinations.bind(this);
         this.loadSchedules = this.loadSchedules.bind(this);
@@ -101,40 +99,30 @@ class SchedulesScreen extends Component {
         ];
     }
 
-    handleReset() {
-        this.setState({
-            values: {
-                typeCode: null,
-                station: null,
-                way: null
-            },
-            stations: [],
-            destinations: [],
-            schedules: [],
-        });
-    }
-
     loadStations(value) {
-        const type = value[0];
-        const code = value[1];
+        const type = value.length === 2 ? value[0] : "";
+        const code = value.length === 2 ? value[1] : "";
         this.setState({
             stationsLoading: true,
             request: {
-                ...this.state.request,
                 type,
                 code
             },
             values: {
-                ...this.state.values,
                 typeCode: value
-            }
+            },
+            stations: [],
+            destinations: [],
+            schedules: []
         });
-        this.props.getStations(type, code)
-            .then(() => this.setState({
-                stationsLoading: false,
-                stations: this.props.schedules.stationsList
-            }))
-            .catch(() => notificationError(this.props.schedules.stationsError.code, this.props.schedules.stationsError.message));
+        value.length === 2
+            ? this.props.getStations(type, code)
+                .then(() => this.setState({
+                    stationsLoading: false,
+                    stations: this.props.schedules.stationsList
+                }))
+                .catch(() => notificationError(this.props.schedules.stationsError.code, this.props.schedules.stationsError.message))
+            : this.setState({stationsLoading: false})
     }
 
     loadDestinations(station) {
@@ -142,12 +130,16 @@ class SchedulesScreen extends Component {
             destinationsLoading: true,
             request: {
                 ...this.state.request,
-                station
+                station,
+                way: ""
             },
             values: {
                 ...this.state.values,
-                station
-            }
+                station,
+                way: null
+            },
+            destinations: [],
+            schedules: []
         });
         this.props.getDestinations(this.state.request.type, this.state.request.code)
             .then(() => this.setState({
@@ -166,20 +158,23 @@ class SchedulesScreen extends Component {
             values: {
                 ...this.state.values,
                 way
-            }
+            },
+            schedules: []
         }, () => {
-            this.setState({schedulesLoading: true});
-            this.props.getSchedules(this.state.request.type, this.state.request.code, this.state.request.station, this.state.request.way)
-                .then(() => {
-                    if (this.props.schedules.schedulesError) {
-                        notificationError(this.props.schedules.schedulesError.code, this.props.schedules.schedulesError.message);
-                    } else {
-                        this.setState({
-                            schedulesLoading: false,
-                            schedules: this.props.schedules.schedulesList
-                        });
-                    }
-                });
+            if (way) {
+                this.setState({schedulesLoading: true});
+                this.props.getSchedules(this.state.request.type, this.state.request.code, this.state.request.station, this.state.request.way)
+                    .then(() => {
+                        if (this.props.schedules.schedulesError) {
+                            notificationError(this.props.schedules.schedulesError.code, this.props.schedules.schedulesError.message);
+                        } else {
+                            this.setState({
+                                schedulesLoading: false,
+                                schedules: this.props.schedules.schedulesList
+                            });
+                        }
+                    });
+            }
         });
     }
 
@@ -200,7 +195,6 @@ class SchedulesScreen extends Component {
                                         expandTrigger="hover"
                                         placeholder="Sélectionnez le quai souhaité"
                                         showSearch
-                                        disabled={this.state.values.typeCode}
                                         value={this.state.values.typeCode}
                                         onChange={value => this.loadStations(value)}
                                     />
@@ -213,8 +207,8 @@ class SchedulesScreen extends Component {
                                                 <p className="schedules__searchLabel">Sélectionnez la station</p>
                                                 <Select
                                                     showSearch
+                                                    allowClear
                                                     placeholder="Sélectionnez la station"
-                                                    disabled={this.state.values.station}
                                                     value={this.state.values.station}
                                                     onChange={value => this.loadDestinations(value)}
                                                 >
@@ -234,8 +228,8 @@ class SchedulesScreen extends Component {
                                             <p className="schedules__searchLabel">Sélectionnez la destination</p>
                                             <Select
                                                 showSearch
+                                                allowClear
                                                 placeholder="Sélectionnez la destination"
-                                                disabled={this.state.values.way}
                                                 value={this.state.values.way}
                                                 onChange={value => this.loadSchedules(value)}
                                             >
@@ -249,12 +243,6 @@ class SchedulesScreen extends Component {
                                         </div>
                                 }
                             </div>
-                            {
-                                this.state.values.typeCode &&
-                                    <div className="schedules__clear">
-                                        <Button onClick={() => this.handleReset()}>Recommencer la recherche</Button>
-                                    </div>
-                            }
                             {
                                 this.state.schedulesLoading
                                     ? <LoadingScreen />
