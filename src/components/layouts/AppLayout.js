@@ -4,7 +4,7 @@ import Layout from "antd/lib/layout";
 import Menu from "antd/lib/menu";
 import Icon from "antd/lib/icon";
 import BackTop from "antd/lib/back-top";
-import Logo from "../../static/logo-ratp.png";
+import Logo from "../../static/img/logo/logo-ratp.png";
 import { Link } from "react-router-dom";
 
 class AppLayout extends Component {
@@ -67,16 +67,16 @@ class AppLayout extends Component {
                                 </span>
                             }
                         >
-                            <Menu.Item key="self">
-                                <Link to="/about-me">
-                                    <Icon type="smile" />
-                                    <span>Qui suis-je ?</span>
+                            <Menu.Item key="team">
+                                <Link to="/team">
+                                    <Icon type="team" />
+                                    <span>L'équipe</span>
                                 </Link>
                             </Menu.Item>
-                            <Menu.Item key="whyThisApp">
-                                <Link to="/certificates">
-                                    <Icon type="safety-certificate" />
-                                    <span>Certifications</span>
+                            <Menu.Item key="contact">
+                                <Link to="/contacts">
+                                    <Icon type="contacts" />
+                                    <span>Contact</span>
                                 </Link>
                             </Menu.Item>
                         </Menu.SubMenu>

@@ -11,6 +11,9 @@
 @import "libs/antd-cascader";
 @import "libs/antd-pagination";
 @import "libs/antd-timeline";
+@import "libs/antd-card";
+@import "libs/antd-divider";
+@import "libs/antd-tabs";
 
 /** COMPONENTS */
 @import "components/traffic-cards";
@@ -18,3 +21,4 @@
 
 /** SCREENS */
 @import "screens/schedules";
+@import "screens/team";

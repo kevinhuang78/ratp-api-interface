@@ -6,6 +6,8 @@ import HomeScreen from "./screens/HomeScreen";
 import TrafficScreen from "./screens/TrafficScreen";
 import LinesScreen from "./screens/LinesScreen";
 import SchedulesScreen from "./screens/SchedulesScreen";
+import TeamScreen from "./screens/TeamScreen";
+import ContactScreen from "./screens/ContactScreen";
 
 const App = () => (
     <BrowserRouter>
@@ -14,6 +16,8 @@ const App = () => (
             <Route exact path="/traffics" component={TrafficScreen} />
             <Route exact path="/lines" component={LinesScreen} />
             <Route exact path="/schedules" component={SchedulesScreen} />
+            <Route exact path="/team" component={TeamScreen} />
+            <Route exact path="/contacts" component={ContactScreen} />
 
             {/* Last Route is 404 Not Found, if it doesn't find any of these route, show 404 */}
             <Route component={NotFoundExceptionScreen} />
