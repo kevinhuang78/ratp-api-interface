@@ -52,6 +52,12 @@ class AppLayout extends Component {
                                 <span>Lignes de transports</span>
                             </Link>
                         </Menu.Item>
+                        <Menu.Item key="schedule">
+                            <Link to="/schedules">
+                                <Icon type="clock-circle" />
+                                <span>Horaires</span>
+                            </Link>
+                        </Menu.Item>
                         <Menu.SubMenu
                             key="about"
                             title={

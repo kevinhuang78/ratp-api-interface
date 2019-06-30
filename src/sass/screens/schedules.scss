@@ -1,0 +1,20 @@
+.schedules {display: flex; justify-content: center; align-items: center; flex-wrap: wrap;}
+.schedules__clear {
+  display: flex; justify-content: center; align-items: center;
+  margin: 16px 0;
+}
+.schedules__search {
+  display: inline-flex; flex: 0 1 30%; flex-wrap: wrap; justify-content: center; align-items: center;
+  margin-top: 8px;
+  & + & {
+    margin-left: 2%;
+  }
+}
+.schedules__searchLabel {margin-bottom: 8px}
+
+@media screen and (max-width: 800px) {
+  .schedules__search {
+    flex: 0 1 80%;
+    margin-left: 0 !important;
+  }
+}

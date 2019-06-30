@@ -8,8 +8,12 @@
 /** WRITE ON NODE MODULES CSS */
 @import "libs/antd-layout";
 @import "libs/antd-select";
+@import "libs/antd-cascader";
 @import "libs/antd-pagination";
 
-/** MY SCSS */
+/** COMPONENTS */
 @import "components/traffic-cards";
 @import "components/exceptions";
+
+/** SCREENS */
+@import "screens/schedules";

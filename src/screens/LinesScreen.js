@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { withRouter } from "react-router";
 import { getLines } from "../actions/lines";
 import AppLayout from "../components/layouts/AppLayout";
 import LoadingScreen from "../components/LoadingScreen";
 import Tabs from "antd/lib/tabs";
 import Icon from "antd/lib/icon";
-import notification from "antd/lib/notification";
 import LineTab from "../components/line/LineTab";
+import { notificationError } from "../utils/helper";
 
 class LinesScreen extends Component {
     constructor(props) {
@@ -29,12 +28,7 @@ class LinesScreen extends Component {
     loadLines() {
         this.props.getLines()
             .then(() => this.setState({loading: false}))
-            .catch(() => notification.error({
-                message: this.props.lines.linesError.code,
-                description: this.props.lines.linesError.message,
-                icon: <Icon type="frown" />,
-                duration: 10
-            }));
+            .catch(() => notificationError(this.props.lines.linesError.code, this.props.lines.linesError.message));
     }
 
     render() {
@@ -106,4 +100,4 @@ const mapDispatchToProps = {
     getLines
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(LinesScreen));
+export default connect(mapStateToProps, mapDispatchToProps)(LinesScreen);

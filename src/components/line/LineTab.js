@@ -3,6 +3,7 @@ import Select from "antd/lib/select";
 import PropTypes from "prop-types";
 import Pagination from "antd/lib/pagination";
 import LineCard from "./LineCard";
+import { removeDuplicates } from "../../utils/helper";
 
 class LineTab extends Component {
     constructor(props) {
@@ -24,20 +25,6 @@ class LineTab extends Component {
         });
     }
 
-    // Return Options with distinct code
-    renderOptions(data) {
-        let result = [];
-        const map = new Map();
-        for (const item of [...data]) {
-            if (!map.has(item.code)) {
-                map.set(item.code, true);    // set any value to Map
-                result.push(item);
-            }
-        }
-
-        return result;
-    }
-
     render() {
         return (
             <Fragment>
@@ -49,7 +36,7 @@ class LineTab extends Component {
                     onChange={value => this.handleSearch(value)}
                 >
                     {
-                        this.renderOptions(this.props.line)
+                        removeDuplicates(this.props.line, 'code')
                             .map(l =>
                                 <Select.Option key={l.id} value={l.name}>{l.name}</Select.Option>
                             )

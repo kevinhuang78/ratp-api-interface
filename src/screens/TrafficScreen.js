@@ -1,13 +1,12 @@
 import React, { Component } from "react";
 import { connect } from 'react-redux';
-import { withRouter } from "react-router";
 import { getTraffic } from "../actions/traffics";
 import AppLayout from "../components/layouts/AppLayout";
 import LoadingScreen from "../components/LoadingScreen";
 import Tabs from "antd/lib/tabs";
 import Icon from "antd/lib/icon";
 import TrafficTab from "../components/traffic/TrafficTab";
-import notification from "antd/lib/notification";
+import { notificationError } from "../utils/helper";
 
 class TrafficScreen extends Component {
     constructor(props) {
@@ -29,12 +28,7 @@ class TrafficScreen extends Component {
     loadTraffic() {
         this.props.getTraffic()
             .then(() => this.setState({loading: false}))
-            .catch(() => notification.error({
-                message: this.props.traffics.trafficError.code,
-                description: this.props.traffics.trafficError.message,
-                icon: <Icon type="frown" />,
-                duration: 10
-            }));
+            .catch(() => notificationError(this.props.traffics.trafficError.code, this.props.traffics.trafficError.message));
     }
 
     render() {
@@ -94,4 +88,4 @@ const mapDispatchToProps = {
     getTraffic
 };
 
-export default withRouter(connect(mapStateToProps, mapDispatchToProps)(TrafficScreen));
+export default connect(mapStateToProps, mapDispatchToProps)(TrafficScreen);
