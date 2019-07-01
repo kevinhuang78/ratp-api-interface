@@ -189,11 +189,11 @@ class SchedulesScreen extends Component {
                         : <div>
                             <div className="schedules">
                                 <div className="schedules__search">
-                                    <p className="schedules__searchLabel">Sélectionnez le quai souhaité</p>
+                                    <p className="schedules__searchLabel">Sélectionnez la ligne souhaitée</p>
                                     <Cascader
                                         options={this.renderOptionsSchedules(this.props.lines.linesList)}
                                         expandTrigger="hover"
-                                        placeholder="Sélectionnez le quai souhaité"
+                                        placeholder="Sélectionnez la ligne souhaitée"
                                         showSearch
                                         value={this.state.values.typeCode}
                                         onChange={value => this.loadStations(value)}
