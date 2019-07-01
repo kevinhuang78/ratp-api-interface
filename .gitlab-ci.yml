@@ -1,0 +1,61 @@
+stages:
+- build
+- tests
+- deploy_preprod_heroku
+- deploy_prod_heroku
+
+build:
+  stage: build
+  image: node
+  script:
+  - npm install
+  - npm run build
+  cache:
+    paths:
+    - ./node_modules
+  artifacts:
+    expire_in: 1 hour
+    paths:
+    - build
+  only:
+  - staging
+  - master
+
+tests:
+  stage: tests
+  image: node
+  script:
+  - npm install
+  - npm test
+  cache:
+    paths:
+    - ./node_modules
+  only:
+  - staging
+  - master
+
+deploy_preprod_heroku:
+  stage: deploy_preprod_heroku
+  image: ruby:2.6
+  script:
+  - apt-get update -qy
+  - apt-get install -yqq ruby ruby-dev nodejs --silent
+  - gem install dpl
+  - dpl --provider=heroku --app=$HEROKU_APP_PREPROD --api-key=$HEROKU_KEY --skip_cleanup=true
+  dependencies:
+  - build
+  only:
+  - staging
+
+deploy_prod_heroku:
+  stage: deploy_prod_heroku
+  image: ruby:2.6
+  script:
+  - apt-get update -qy
+  - apt-get install -yqq ruby ruby-dev nodejs --silent
+  - gem install dpl
+  - dpl --provider=heroku --app=$HEROKU_APP_PROD --api-key=$HEROKU_KEY --skip_cleanup=true
+  dependencies:
+  - build
+  only:
+  - master
