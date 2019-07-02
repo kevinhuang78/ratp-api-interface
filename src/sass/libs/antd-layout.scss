@@ -27,3 +27,7 @@
   text-align: center;
 }
 .ant-layout-footer--collapsed {margin-left: 200px}
+
+@media screen and (max-width: 580px) {
+  .ant-layout-sider-trigger {display: none}
+}

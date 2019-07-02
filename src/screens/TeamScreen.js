@@ -7,7 +7,8 @@ import PierreGrimaud from "../static/img/team/pgrimaud.jpg";
 
 const TeamScreen = () => (
     <AppLayout
-        defaultSelectedKeys={['about', 'team']}
+        defaultOpenKeys={['about']}
+        defaultSelectedKeys={['team']}
     >
         <Divider>Team Front-End (React)</Divider>
         <div className="team__item">

@@ -33,7 +33,12 @@ class AppLayout extends Component {
                     onCollapse={this.handleCollapse}
                 >
                     <img src={Logo} alt="Logo de RATP" className="logo" />
-                    <Menu theme="dark" defaultSelectedKeys={this.props.defaultSelectedKeys} mode="inline">
+                    <Menu
+                        theme="dark"
+                        defaultOpenKeys={this.props.defaultOpenKeys}
+                        defaultSelectedKeys={this.props.defaultSelectedKeys}
+                        mode="inline"
+                    >
                         <Menu.Item key="home">
                             <Link to="/">
                                 <Icon type="home" />

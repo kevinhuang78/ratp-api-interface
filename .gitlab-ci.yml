@@ -9,6 +9,7 @@ build:
   image: node
   script:
   - npm install
+  - rm -rf .env.development
   - npm run build
   cache:
     paths:
