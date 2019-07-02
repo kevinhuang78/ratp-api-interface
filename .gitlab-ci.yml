@@ -8,7 +8,6 @@ build:
   stage: build
   image: node
   script:
-  - rm .env.development
   - npm install
   - npm run build
   cache:
