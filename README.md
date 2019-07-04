@@ -6,6 +6,7 @@
 - [x] Develop branch is for developers
 - [x] Staging branch is here to deploy on the staging website where the environment is the same as master and you can test it whenever you want
 - [x] Master branch is here to deploy on the production website
+- [x] Notification is activated with Slack
 
 ### Security
 Branches are protected :
