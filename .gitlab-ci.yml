@@ -1,10 +1,10 @@
 stages:
 - build
 - tests
-- deploy_google_staging
 - deploy_preprod_heroku
-- deploy_google_production
+- deploy_google_staging
 - deploy_prod_heroku
+- deploy_google_production
 
 build:
   stage: build
