@@ -2,7 +2,9 @@ stages:
 - build
 - tests
 - deploy_preprod_heroku
+- deploy_google_staging
 - deploy_prod_heroku
+- deploy_google_production
 
 build:
   stage: build
@@ -47,6 +49,16 @@ deploy_preprod_heroku:
   only:
   - staging
 
+deploy_google_staging:
+  stage: deploy_google_staging
+  image: google/cloud-sdk:alpine
+  script:
+  - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+  - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+  - gcloud --quiet --project $PROJECT_ID app deploy staging-app.yaml
+  only:
+  - staging
+
 deploy_prod_heroku:
   stage: deploy_prod_heroku
   image: ruby:2.6
@@ -59,3 +71,16 @@ deploy_prod_heroku:
   - build
   only:
   - master
+
+deploy_google_production:
+  stage: deploy_google_production
+  image: google/cloud-sdk:alpine
+  script:
+  - echo $SERVICE_ACCOUNT > /tmp/$CI_PIPELINE_ID.json
+  - gcloud auth activate-service-account --key-file /tmp/$CI_PIPELINE_ID.json
+  - gcloud --quiet --project $PROJECT_ID app deploy app.yaml dispatch.yaml
+  only:
+  - master
+
+after_script:
+- rm /tmp/$CI_PIPELINE_ID.json
