@@ -19,7 +19,7 @@ const App = () => (
             <Route exact path="/team" component={TeamScreen} />
             <Route exact path="/contacts" component={ContactScreen} />
 
-            {/* Last Route is 404 Not Found, if it doesn't find any of these route, show 404 */}
+            { /* Last Route is 404 Not Found, if it doesn't find any of these route, show 404 */ }
             <Route component={NotFoundExceptionScreen} />
         </Switch>
     </BrowserRouter>
