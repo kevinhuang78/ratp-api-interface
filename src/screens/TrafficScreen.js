@@ -13,7 +13,7 @@ class TrafficScreen extends Component {
         super(props);
 
         this.state = {
-            loading: true
+            loading: Object.keys(this.props.traffics.trafficList).length === 0
         };
 
         document.title = "RATP API Interface - Trafic";
@@ -22,7 +22,7 @@ class TrafficScreen extends Component {
     }
 
     componentDidMount() {
-        this.loadTraffic();
+        Object.keys(this.props.traffics.trafficList).length === 0 && this.loadTraffic();
     }
 
     loadTraffic() {

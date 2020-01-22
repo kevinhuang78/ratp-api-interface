@@ -13,7 +13,7 @@ class LinesScreen extends Component {
         super(props);
 
         this.state = {
-            loading: true
+            loading: Object.keys(this.props.lines.linesList).length === 0
         };
 
         document.title = "RATP API Interface - Lignes de transports";
@@ -22,7 +22,7 @@ class LinesScreen extends Component {
     }
 
     componentDidMount() {
-        this.loadLines();
+        Object.keys(this.props.lines.linesList).length === 0 && this.loadLines();
     }
 
     loadLines() {
