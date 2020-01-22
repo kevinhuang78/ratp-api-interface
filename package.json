@@ -5,6 +5,7 @@
   "dependencies": {
     "antd": "^3.26.7",
     "axios": "^0.18.0",
+    "babel-jest": "^25.1.0",
     "node-sass": "^4.13.1",
     "prop-types": "^15.7.2",
     "react": "^16.12.0",
