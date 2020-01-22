@@ -1,4 +1,4 @@
-.ant-layout {background-color: $grey; min-height: 100vh;}
+.ant-layout {background-color: $light-grey; min-height: 100vh;}
 .ant-layout-sider-children {
   display: flex; align-items: center; flex-direction: column;
   .logo {
@@ -29,8 +29,9 @@
 .ant-layout-content {
   margin: 24px 16px 24px 96px;
   overflow: initial;
+  transition: 0.2s;
 }
-.ant-layout-content--collapsed {margin-left: 216px}
+.ant-layout-content--collapsed {margin-left: 266px}
 .ant-layout-footer {
   display: flex; align-items: center; justify-content: center;
   min-height: 48px; padding: 10px 50px; margin-left: 80px;

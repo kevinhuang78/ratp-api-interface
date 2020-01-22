@@ -32,6 +32,7 @@ class AppLayout extends Component {
                     breakpoint="lg"
                     collapsed={this.state.collapsedMenu}
                     onCollapse={this.toggleCollapse}
+                    width={250}
                 >
                     <img src={Logo} alt="Logo de RATP" className="logo" />
                     <img src={Logosm} alt="Logo de RATP" className="logo-sm" />
