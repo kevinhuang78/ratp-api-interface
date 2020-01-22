@@ -4,7 +4,8 @@ import Layout from "antd/lib/layout";
 import Menu from "antd/lib/menu";
 import Icon from "antd/lib/icon";
 import BackTop from "antd/lib/back-top";
-import Logo from "../../static/img/logo/logo-ratp.png";
+import Logo from "../../static/img/logo/ratp.png";
+import Logosm from "../../static/img/logo/ratp-sm.png";
 import { Link } from "react-router-dom";
 
 class AppLayout extends Component {
@@ -15,10 +16,10 @@ class AppLayout extends Component {
             collapsedMenu: false
         };
 
-        this.handleCollapse = this.handleCollapse.bind(this);
+        this.toggleCollapse = this.toggleCollapse.bind(this);
     }
 
-    handleCollapse() {
+    toggleCollapse() {
         this.setState({ collapsedMenu: !this.state.collapsedMenu });
     }
 
@@ -30,9 +31,10 @@ class AppLayout extends Component {
                     collapsible
                     breakpoint="lg"
                     collapsed={this.state.collapsedMenu}
-                    onCollapse={this.handleCollapse}
+                    onCollapse={this.toggleCollapse}
                 >
                     <img src={Logo} alt="Logo de RATP" className="logo" />
+                    <img src={Logosm} alt="Logo de RATP" className="logo-sm" />
                     <Menu
                         theme="dark"
                         defaultOpenKeys={this.props.defaultOpenKeys}

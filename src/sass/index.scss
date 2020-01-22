@@ -1,6 +1,7 @@
 /** INIT / CONFIG */
 @import "config/reset";
 @import "config/variables";
+@import "config/global";
 
 /** ANTD CSS */
 @import "~antd/dist/antd.min.css";
@@ -20,5 +21,6 @@
 @import "components/exceptions";
 
 /** SCREENS */
+@import "screens/home";
 @import "screens/schedules";
 @import "screens/team";

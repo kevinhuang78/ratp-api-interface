@@ -1,8 +1,17 @@
 .ant-layout {background-color: $grey; min-height: 100vh;}
-.ant-layout-sider-children .logo {
-  margin: 16px;
-  width: calc(100% - 32px); height: auto;
-  background: rgba($white, 0.2);
+.ant-layout-sider-children {
+  display: flex; align-items: center; flex-direction: column;
+  .logo {
+    width: 100%; max-width: 120px; margin: 16px; height: auto;
+  }
+  .logo-sm {
+    display: none;
+    width: 100%; max-width: 50px; margin: 16px; height: auto;
+  }
+}
+.ant-layout-sider-collapsed {
+  .logo {display: none;}
+  .logo-sm {display: block;}
 }
 .ant-layout-sider {
   position: fixed; left: 0;
@@ -23,11 +32,18 @@
 }
 .ant-layout-content--collapsed {margin-left: 216px}
 .ant-layout-footer {
-  margin-left: 80px;
+  display: flex; align-items: center; justify-content: center;
+  min-height: 48px; padding: 10px 50px; margin-left: 80px;
   text-align: center;
+  a {margin-left: 4px;}
 }
 .ant-layout-footer--collapsed {margin-left: 200px}
 
 @media screen and (max-width: 580px) {
   .ant-layout-sider-trigger {display: none}
+}
+
+.ant-menu .ant-menu-item {
+  margin-top: 0;
+  margin-bottom: 10px;
 }
